@@ -1,0 +1,91 @@
+<span *ngIf="processStatus==0" style="font-weight:bold;color:#599bb3;">Permanezca a la espera mientras se genera el fichero.</span>
+<span *ngIf="processStatus==1" style="font-weight:bold;color:orange;">{{message}}</span>
+<span *ngIf="processStatus==2" style="font-weight:bold;color:green;">Hecho. Puede descargar el fichero <a (click)="getFile(message)" [routerLink]="">aquí</a>.</span>
+<div *ngIf="isListOfFilesEmpty" class="card-header" style="min-width:260px;">
+    No existe ninguna base de datos. Para subir una nueva acceda al apartado 'mis bases de datos'.
+</div>
+<div *ngIf="!isListOfFilesEmpty" style="display:flex;width:450px;align-items:center;">
+    <div style="flex:1;margin:3px;">
+        <div>
+            <b>Base de datos</b>
+        </div>
+        <div>
+            <select name="db-name" [(ngModel)]="selectedDatabase" (change)="setDatabase()" *ngIf="isDataLoaded">
+                <option [ngValue]="database" *ngFor="let database of databases">{{database.databaseName}}</option>
+            </select>
+        </div>
+    </div>
+    <div style="flex:2;margin:3px;">
+        <div>
+            <b>Tabla</b>
+        </div>
+        <div>
+            <select name="db-table-name" [(ngModel)]="selectedTable" (change)="setTable()" *ngIf="isDataLoaded">
+                <option [ngValue]="table" *ngFor="let table of selectableTables">{{table.tableName}}</option>
+            </select>
+        </div>
+    </div>
+    <div style="flex:2;margin:3px;">
+        <button class="btn btn-dark link-size" (click)="gen()">Generar</button>
+    </div>
+    <div class="dropdown" style="flex:2;margin:3px;">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" onclick="openDropdown()" aria-haspopup="true" aria-expanded="false">
+          Opciones
+        </button>
+        <div class="dropdown-menu mydropdown" aria-labelledby="dropdownMenuButton">
+          
+          <div class="dropdown-menu btn-group dropright">
+            <button type="button" class="dropdown-toggle" onclick="openDropright()" aria-haspopup="true" aria-expanded="false">
+              Fichero
+            </button>
+            <div class="dropdown-menu mydropright">
+                <div class="dropdown-item">
+                    <div style="display:flex;"><div style="order:1;width:150px;margin:2px;font-weight:bold;">Nombre del fichero</div><div style="order:2;margin:2px;"><input type="text" [(ngModel)]="filename" /></div></div>
+                    <div style="display:block;margin:2px;">
+                        <span style="font-weight:bold;">Tablas a mostrar:</span><br>
+                        <div *ngFor="let table of databaseTables" >
+                            <div *ngIf="table.databaseId==selectedTable.databaseId">
+                                <input type="checkbox" style="margin:5px;" [(ngModel)]="table.exportable" checked="{{table.exportable}}" /> <input type="text" style="margin:5px;" [(ngModel)]="table.sheetName" value="{{table.sheetName}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;" *ngFor="let table of databaseTables">
+                        <span *ngIf="table.id==selectedTable.id">
+                            <div style="order:1;width:150px;margin:2px;font-weight:bold;">Condiciones (ej.: id<2 AND marca LIKE "%na")</div><div style="order:2;margin:2px;"><input type="text" [(ngModel)]="table.queryConditions" style="min-width:335px;" /></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div *ngIf="isDataLoaded" style="display:table;position:relative;width:90%;padding:2px;">
+                <div style="display:table-row;">
+                    <div style="display:table-cell;min-width:300px;"><h4>Lista de campos</h4></div>
+                </div>
+                <div *ngFor="let field of selectableFields" style="display:table-row;">
+                    <div class="fieldCells">{{field.fieldName}} <{{field.fieldType}}></div>
+                    <div class="fieldCells"><button class="addingbutton" (click)="addField(field)" *ngIf="!field.selected">></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div *ngIf="isDataLoaded" style="display:table;position:relative;width:90%;padding:2px;">
+                <div style="display:table-row;">
+                    <div style="display:table-cell;min-width:300px;"><h4>Campos seleccionados</h4></div>
+                </div>
+                <div *ngIf="selectedFieldsDisplayed.length==0" style="display:table-row;">
+                    No hay campos seleccionados para esa tabla.
+                </div>
+                <div *ngFor="let field of selectedFieldsDisplayed" style="display:table-row;">
+                    <div class="fieldCells">{{field.fieldName}} <{{field.fieldType}}></div>
+                    <div class="fieldCells"><button class="removingButton" (click)="removeField(field)">x</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

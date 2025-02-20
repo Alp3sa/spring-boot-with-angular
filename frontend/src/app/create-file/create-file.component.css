@@ -1,0 +1,96 @@
+.fieldCells {
+	position:relative;
+	display:table-cell;
+	border-top:solid black thin;
+	min-height:50px;
+	height:50px;
+	vertical-align:middle;
+	padding-left:5px;
+	word-break: break-all;
+}
+.addingbutton {
+	background-color:#44c767;
+	border-radius:36px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:1px 10px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #2f6627;
+}
+.addingbutton:hover {
+	background-color:#07b307;
+}
+.addingbutton:focus {
+	outline:0;
+}
+
+.removingButton {
+	background-color:#599bb3;
+	border-radius:42px;
+	border:1px solid #3d768a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+}
+.removingButton:hover {
+	background-color:#3d768a;
+}
+.removingButton:focus {
+	outline:0;
+}
+.mydropdown{
+	border:0;
+	margin:0;
+	padding:0;
+	min-width:120px;
+}
+.mydropright{
+	border:0;
+	margin:0;
+	padding:0;
+}
+div.dropright{
+	border:0;
+	padding:0;
+	margin:0;
+	min-width:120px;
+}
+button.dropdown-toggle{
+	width:120px;
+	color:black;
+	border:solid black thin;
+	background-color:white;
+	height:40px;
+}
+button.dropdown-toggle:focus{
+	outline: none;
+}
+.dropdown-item{
+	width:100%;
+	color:black;
+	border:solid black thin;
+	background-color:white;
+}
+button.dropdown-item{
+	height:40px;
+}
+button.dropdown-item:focus{
+	outline: none;
+	color:black;
+}
+button.dropdown-item:selected{
+	color:black;
+}
+div.dropdown-item{
+	height:auto;
+}

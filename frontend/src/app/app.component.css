@@ -1,0 +1,14 @@
+.link-size{
+    width:100%;
+    height:100%;
+}
+.nav-margin{
+    margin:1px;
+}
+.myNavbar{
+    display:inline;
+    padding:0;
+}
+.myNavbar-nav{
+    min-width:260px;
+}

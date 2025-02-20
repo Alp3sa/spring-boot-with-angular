@@ -1,0 +1,27 @@
+<label class="btn btn-default">
+  <input #uploadInput type="file" (change)="selectFile($event)" />
+</label>
+<button class="btn btn-success" (click)="upload()">
+  Upload
+</button>
+  <div *ngIf="welcome" style="color:green;font-weight:bold;border-radius: 25px;border: 2px solid #73AD21;padding:20px;min-width:260px;">
+    Bienvenido {{welcome}}
+  </div>
+  <div *ngIf="error" style="color:red;font-weight:bold;padding-left:20px;">{{error}}</div>
+  <div *ngIf="isLoading" style="color:#599bb3;font-weight:bold;padding:20px;">{{loadingMessage}}</div>
+  <div *ngIf="isLoaded" style="color:green;font-weight:bold;padding-left:20px;">La base de datos se ha cargado correctamente.</div>
+  <div *ngIf="message" class="alert alert-light" role="alert">{{ message }}</div>
+  <div *ngIf="isListOfFilesEmpty" class="card-header" style="min-width:260px;">
+    No ha subido ninguna base de datos. Seleccione una y haga click en 'upload', posteriormente podrá borrarlas si lo desea. Los formatos aceptados son los siguientes: sql, accdb y mdb)
+  </div>
+  <div *ngIf="!isListOfFilesEmpty" class="card" style="min-width:260px;">
+    <div class="card-header">Lista de bases de datos</div>
+    <ul
+      class="list-group list-group-flush"
+      *ngFor="let file of fileInfos | async"
+    >
+      <li class="list-group-item">
+        <button (click)="deleteDatabase(file.name)">x</button> <a (click)="getFile(file.name)" [routerLink]=""> {{ file.name }} </a>
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,12 @@
+ALTER TABLE databasetable ADD CONSTRAINT FK_databasetable_databaseinfo FOREIGN KEY (database_id) REFERENCES databaseinfo(id);
+ALTER TABLE databasefield ADD CONSTRAINT FK_databasefield_databasetable FOREIGN KEY (database_table_id) REFERENCES databasetable(id);
+
+ALTER TABLE databaserelation ADD CONSTRAINT FK_databaserelation_databasetable1 FOREIGN KEY (database_table_id) REFERENCES databasetable(id);
+ALTER TABLE databaserelation ADD CONSTRAINT FK_databaserelation_databasetable2 FOREIGN KEY (database_referenced_table_id) REFERENCES databasetable(id);
+ALTER TABLE databaserelation ADD CONSTRAINT FK_databaserelation_databasefield3 FOREIGN KEY (database_field_id) REFERENCES databasefield(id);
+ALTER TABLE databaserelation ADD CONSTRAINT FK_databaserelation_databasefield4 FOREIGN KEY (database_referenced_field_id) REFERENCES databasefield(id);
+
+ALTER TABLE databaseinfo ADD CONSTRAINT FK_databaseinfo_users FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE user_roles ADD CONSTRAINT FK_userroles_roles FOREIGN KEY (role_id) REFERENCES roles(id);
+ALTER TABLE user_roles ADD CONSTRAINT FK_userroles_users FOREIGN KEY (user_id) REFERENCES users(id);

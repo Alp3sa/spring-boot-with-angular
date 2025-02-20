@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>{{title}}</h2>
+  <hr>
+  <nav class="navbar navbar-expand-sm myNavbar">
+      <!-- Links -->
+      <ul class="navbar-nav myNavbar-nav">
+          <!--<li class="nav-item nav-margin">
+              <a routerLink="people/list" class="btn btn-primary link-size" role="button" routerLinkActive="active">Lista de personas</a>
+          </li>
+          <li class="nav-item nav-margin">
+              <a routerLink="people/add" class="btn btn-primary link-size" role="button" routerLinkActive="active">Crear una nueva persona</a>
+          </li>-->
+          <li class="nav-item nav-margin" [hidden]="authenticated()">
+            <a routerLink="login" class="btn btn-primary link-size" role="button" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item nav-margin" [hidden]="authenticated()">
+            <a routerLink="signup" class="btn btn-primary link-size" role="button" routerLinkActive="active">Sign up</a>
+          </li>
+          <li class="nav-item nav-margin" [hidden]="!authenticated()">
+            <a routerLink="uploadFile" class="btn btn-primary link-size" role="button" routerLinkActive="active">Mis bases de datos</a>
+          </li>
+          <li class="nav-item nav-margin" [hidden]="!authenticated()">
+            <a routerLink="createFile" class="btn btn-primary link-size" role="button" routerLinkActive="active">Crear consulta</a>
+          </li>
+          <li class="nav-item nav-margin" [hidden]="!authenticated()">
+            <a routerLink="getFiles" class="btn btn-primary link-size" role="button" routerLinkActive="active">Ficheros</a>
+          </li>
+          <li class="nav-item nav-margin" [hidden]="!authenticated()">
+            <a routerLink="login" (click)=logout() class="btn btn-primary link-size" role="button" routerLinkActive="active">Logout</a>
+          </li>
+      </ul>
+  </nav>
+  <hr>
+  <router-outlet></router-outlet>
+</div>

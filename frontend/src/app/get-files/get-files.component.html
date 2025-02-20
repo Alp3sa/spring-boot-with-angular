@@ -1,0 +1,15 @@
+<div class="alert alert-light" role="alert">{{ message }}</div>
+<div *ngIf="isListOfFilesEmpty" class="card-header" style="min-width:260px;">
+  No existe ningún fichero. Para generar uno nuevo cree una nueva consulta en el apartado 'crear consulta'.
+</div>
+<div  *ngIf="!isListOfFilesEmpty" class="card">
+  <div class="card-header">Lista de consultas</div>
+  <ul
+    class="list-group list-group-flush"
+    *ngFor="let file of fileInfos | async"
+  >
+    <li class="list-group-item">
+      <button (click)="deleteQuery(file.name)">x</button> <a (click)="getFile(file.name)" [routerLink]=""> {{ file.name }} </a>
+    </li>
+  </ul>
+</div>
