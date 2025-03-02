@@ -110,8 +110,9 @@ export class FileService {
 
         // Open file with filename
         var blob: Blob = new Blob([data]);
-        if(window.navigator.msSaveOrOpenBlob){ //For IE & Edge
-          window.navigator.msSaveBlob(blob,filename);
+		const nav = (window.navigator as any);
+        if(nav.msSaveOrOpenBlob){ //For IE & Edge
+          nav.msSaveBlob(blob,filename);
         } else{ //For other browsers
           var objectUrl: string = URL.createObjectURL(blob);
           var a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;

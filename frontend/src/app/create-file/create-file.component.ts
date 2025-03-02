@@ -7,9 +7,11 @@ import { Database } from '../models/database';
 import { DatabaseTable } from '../models/databaseTable';
 import { DatabaseField } from '../models/databaseField';
 import { UserService } from "./../services/user.service";
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-create-file',
   templateUrl: './create-file.component.html',
   styleUrls: ['./create-file.component.css']

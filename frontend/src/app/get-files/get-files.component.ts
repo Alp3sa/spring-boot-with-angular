@@ -3,9 +3,11 @@ import { Observable } from 'rxjs';
 import { FileService } from "./../services/file.service";
 import { HttpResponse } from '@angular/common/http';
 import { UserService } from "./../services/user.service";
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-get-files',
   templateUrl: './get-files.component.html',
   styleUrls: ['./get-files.component.css']

@@ -16,7 +16,7 @@
             "outputPath": "dist/qgen",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -61,25 +61,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "qgen:build"
+            "buildTarget": "qgen:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "qgen:build:production"
+              "buildTarget": "qgen:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "qgen:build"
+            "buildTarget": "qgen:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
@@ -119,5 +119,8 @@
         }
       }
     }},
-  "defaultProject": "qgen"
+  "defaultProject": "qgen",
+  "cli": {
+    "analytics": false
+  }
 }

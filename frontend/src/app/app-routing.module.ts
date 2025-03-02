@@ -14,10 +14,11 @@ const routes: Routes = [
   { path: 'createFile', component: CreateFileComponent },
   { path: 'getFiles', component: GetFilesComponent }
 ];
-export const appRouting: ModuleWithProviders<any> = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
+//export const appRouting: ModuleWithProviders<any> = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
+export const appRouting = RouterModule.forRoot(routes);
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

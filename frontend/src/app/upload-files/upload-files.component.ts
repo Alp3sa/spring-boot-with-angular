@@ -3,9 +3,11 @@ import { Observable } from 'rxjs';
 import { FileService } from "./../services/file.service";
 import { UserService } from "./../services/user.service";
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-upload-files',
   templateUrl: './upload-files.component.html',
   styleUrls: ['./upload-files.component.css']
@@ -109,8 +111,9 @@ export class UploadFilesComponent implements OnInit {
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL); */
         var blob: Blob = new Blob([data]);
-        if(window.navigator.msSaveOrOpenBlob){ //For IE & Edge
-          window.navigator.msSaveBlob(blob,filename);
+		const nav = (window.navigator as any);
+        if(nav.msSaveOrOpenBlob){ //For IE & Edge
+          nav.msSaveBlob(blob,filename);
         } else{ //For other browsers
           var objectUrl = window.URL.createObjectURL(blob);
           var a = document.createElement("a");

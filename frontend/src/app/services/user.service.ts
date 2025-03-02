@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +24,12 @@ export class UserService {
     return this.http.post('api/auth/login', {
       username,
       password
-    }, httpOptions);
+    }, httpOptions).pipe(
+	   catchError(error => {
+		   console.error('login error:', error);
+		   return throwError(error);
+	   })
+    );
   }
 
   signup(username: string, email: string, password: string): Observable<any> {
@@ -31,7 +37,12 @@ export class UserService {
       username,
       email,
       password
-    }, httpOptions);
+    }, httpOptions).pipe(
+	   catchError(error => {
+		   console.error('signup error:', error);
+		   return throwError(error);
+	   })
+    );
   }
 
   logout(username: string): Observable<any> {
